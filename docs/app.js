@@ -193,7 +193,6 @@ app.updateEvent.addEventListener(function (frame) {
         // the box doesn't move if the local coordinate system origin changes.
         if (Argon.convertEntityReferenceFrame(boxGeoEntity, frame.time, ReferenceFrame.FIXED)) {
             scene.add(boxGeoObject);
-            scene.add(teapotGeo);
             boxInit = true;
         }
     }
@@ -206,14 +205,14 @@ app.updateEvent.addEventListener(function (frame) {
         teaPos_1.x += 10;
         // set the value of the box Entity to this local position, by
         // specifying the frame of reference to our local frame
-        teaGeoEntity.position.setValue(boxPos_1, defaultFrame);
+        teaGeoEntity.position.setValue(teaPos_1, defaultFrame);
         // orient the box according to the local world frame
         teaGeoEntity.orientation.setValue(Cesium.Quaternion.IDENTITY);
         // now, we want to move the box's coordinates to the FIXED frame, so
         // the box doesn't move if the local coordinate system origin changes.
         if (Argon.convertEntityReferenceFrame(teaGeoEntity, frame.time, ReferenceFrame.FIXED)) {
             scene.add(teapotGeo);
-            boxInit = true;
+            teaInit = true;
         }
     }
     // get the local coordinates of the local box, and set the THREE object
