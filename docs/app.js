@@ -140,7 +140,7 @@ function toFixed(value, precision) {
 
 var teapotGeo = new THREE.Object3D;
 var teapot = new THREE.Object3D();
-var objLoader = new THREE.objLoader()
+var objLoader = new THREE.objLoader();
 objLoader.load('teapot.boj', function (object){
     teapot.add(object)
 });
