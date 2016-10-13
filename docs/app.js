@@ -154,7 +154,7 @@ teaLoader.load('teapot.obj', function (object){
 teapotGeo.add(teapot);
 
 var teaGeoEntity = new Argon.Cesium.Entity({
-    name: "I have tea?!",
+    name: "I can haz tea?!",
     position: Cartesian3.Cartesian3,
     orientation: Cesium.Quaternion.IDENTITY
 });
