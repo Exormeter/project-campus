@@ -129,6 +129,7 @@ boxGeoObject.add(boxLabel);
 //     boxOrientation.setValue(Cesium.Quaternion.IDENTITY);
 //     boxGeoEntity.orientation = boxOrientation;
 var boxInit = false;
+var teaGeoEntity = false;
 var boxCartographicDeg = [0, 0, 0];
 var lastInfoText = "";
 var lastBoxText = "";
@@ -152,6 +153,11 @@ teaLoader.load('teapot.obj', function (object){
 });
 teapotGeo.add(teapot);
 
+var teaGeoEntity = new Argon.Cesium.Entity({
+    name: "I have tea?!",
+    position: Cartesian3.Cartesian3,
+    orientation: Cesium.Quaternion.IDENTITY
+});
 
 
 // the updateEvent is called each time the 3D world should be
@@ -187,6 +193,25 @@ app.updateEvent.addEventListener(function (frame) {
         // the box doesn't move if the local coordinate system origin changes.
         if (Argon.convertEntityReferenceFrame(boxGeoEntity, frame.time, ReferenceFrame.FIXED)) {
             scene.add(boxGeoObject);
+            scene.add(teapotGeo);
+            boxInit = true;
+        }
+    }
+
+    if (!teaInit) {
+        var defaultFrame = app.context.getDefaultReferenceFrame();
+        // set the box's position to 10 meters away from the user.
+        // First, clone the userPose postion, and add 10 to the X
+        var teaPos_1 = userPose.position.clone();
+        teaPos_1.x += 10;
+        // set the value of the box Entity to this local position, by
+        // specifying the frame of reference to our local frame
+        teaGeoEntity.position.setValue(boxPos_1, defaultFrame);
+        // orient the box according to the local world frame
+        teaGeoEntity.orientation.setValue(Cesium.Quaternion.IDENTITY);
+        // now, we want to move the box's coordinates to the FIXED frame, so
+        // the box doesn't move if the local coordinate system origin changes.
+        if (Argon.convertEntityReferenceFrame(teaGeoEntity, frame.time, ReferenceFrame.FIXED)) {
             scene.add(teapotGeo);
             boxInit = true;
         }
