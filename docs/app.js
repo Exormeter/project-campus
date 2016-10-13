@@ -129,7 +129,7 @@ boxGeoObject.add(boxLabel);
 //     boxOrientation.setValue(Cesium.Quaternion.IDENTITY);
 //     boxGeoEntity.orientation = boxOrientation;
 var boxInit = false;
-var teaGeoEntity = false;
+var teaInit = false;
 var boxCartographicDeg = [0, 0, 0];
 var lastInfoText = "";
 var lastBoxText = "";
