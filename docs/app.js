@@ -155,7 +155,7 @@ teapotGeo.add(teapot);
 
 var teaGeoEntity = new Argon.Cesium.Entity({
     name: "I can haz tea?!",
-    position: Cartesian3.Cartesian3,
+    position: Cartesian3.UNIT_Z,
     orientation: Cesium.Quaternion.IDENTITY
 });
 
