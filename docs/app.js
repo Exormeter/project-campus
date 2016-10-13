@@ -155,7 +155,7 @@ teapotGeo.add(teapot);
 
 var teaGeoEntity = new Argon.Cesium.Entity({
     name: "I can haz tea?!",
-    position: Cartesian3.UNIT_Z,
+    position: Cartesian3.UNIT_X,
     orientation: Cesium.Quaternion.IDENTITY
 });
 
@@ -198,14 +198,14 @@ app.updateEvent.addEventListener(function (frame) {
     }
 
     if (!teaInit) {
-        var defaultFrame = app.context.getDefaultReferenceFrame();
+        var defaultFrame1 = app.context.getDefaultReferenceFrame();
         // set the box's position to 10 meters away from the user.
         // First, clone the userPose postion, and add 10 to the X
         var teaPos_1 = userPose.position.clone();
         teaPos_1.x += 10;
         // set the value of the box Entity to this local position, by
         // specifying the frame of reference to our local frame
-        teaGeoEntity.position.setValue(teaPos_1, defaultFrame);
+        teaGeoEntity.position.setValue(teaPos_1, defaultFrame1);
         // orient the box according to the local world frame
         teaGeoEntity.orientation.setValue(Cesium.Quaternion.IDENTITY);
         // now, we want to move the box's coordinates to the FIXED frame, so
