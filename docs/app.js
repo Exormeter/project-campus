@@ -137,10 +137,16 @@ function toFixed(value, precision) {
     var power = Math.pow(10, precision || 0);
     return String(Math.round(value * power) / power);
 }
+var manager = new THREE.LoadingManager();
+manager.onProgress = function ( item, loaded, total ) {
+
+	console.log( item, loaded, total );
+
+};
 
 var teapotGeo = new THREE.Object3D;
 var teapot = new THREE.Object3D();
-var objLoader = new THREE.objLoader();
+var objLoader = new THREE.objLoader(manager);
 objLoader.load('teapot.boj', function (object){
     teapot.add(object)
 });
