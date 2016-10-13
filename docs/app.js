@@ -212,8 +212,8 @@ app.updateEvent.addEventListener(function (frame) {
         // the box doesn't move if the local coordinate system origin changes.
         if (Argon.convertEntityReferenceFrame(teaGeoEntity, frame.time, ReferenceFrame.FIXED)) {
             scene.add(teapotGeo);
-            teaInit = true;
         }
+        teaInit = true;
     }
     // get the local coordinates of the local box, and set the THREE object
     var boxPose = app.context.getEntityPose(boxGeoEntity);
