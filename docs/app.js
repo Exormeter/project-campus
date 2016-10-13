@@ -137,6 +137,17 @@ function toFixed(value, precision) {
     var power = Math.pow(10, precision || 0);
     return String(Math.round(value * power) / power);
 }
+
+var teapotGeo = new THREE.Object3D;
+var teapot = new THREE.Object3D();
+var objLoader = new THREE.objLoader()
+objLoader.load('teapot.boj', function (object){
+    teapot.add(object)
+});
+teapotGeo.add(teapot);
+
+
+
 // the updateEvent is called each time the 3D world should be
 // rendered, before the renderEvent.  The state of your application
 // should be updated here.
@@ -170,6 +181,7 @@ app.updateEvent.addEventListener(function (frame) {
         // the box doesn't move if the local coordinate system origin changes.
         if (Argon.convertEntityReferenceFrame(boxGeoEntity, frame.time, ReferenceFrame.FIXED)) {
             scene.add(boxGeoObject);
+            scene.add(teapotGeo);
             boxInit = true;
         }
     }
