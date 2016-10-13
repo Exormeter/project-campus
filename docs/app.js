@@ -146,8 +146,8 @@ manager.onProgress = function ( item, loaded, total ) {
 
 var teapotGeo = new THREE.Object3D;
 var teapot = new THREE.Object3D();
-var objLoader = new THREE.objLoader(manager);
-objLoader.load('teapot.boj', function (object){
+var teaLoader = new THREE.OBJLoader(manager);
+teaLoader.load('teapot.obj', function (object){
     teapot.add(object)
 });
 teapotGeo.add(teapot);
