@@ -220,6 +220,10 @@ app.updateEvent.addEventListener(function (frame) {
     var boxPose = app.context.getEntityPose(boxGeoEntity);
     boxGeoObject.position.copy(boxPose.position);
     boxGeoObject.quaternion.copy(boxPose.orientation);
+
+    var teaPose = app.context.getEntityPose(teaGeoEntity);
+    teapotGeo.position.copy(teaPose.position);
+    teapotGeo.quaternion.copy(teaPose.orientation);
     // get the local coordinates of the GT box, and set the THREE object
     var geoPose = app.context.getEntityPose(gatechGeoEntity);
     gatechGeoTarget.position.copy(geoPose.position);
