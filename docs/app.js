@@ -138,19 +138,22 @@ function toFixed(value, precision) {
     var power = Math.pow(10, precision || 0);
     return String(Math.round(value * power) / power);
 }
-var manager = new THREE.LoadingManager();
-manager.onProgress = function ( item, loaded, total ) {
 
-	console.log( item, loaded, total );
-
-};
 
 var teapotGeo = new THREE.Object3D;
 var teapot = new THREE.Object3D();
-var teaLoader = new THREE.OBJLoader(manager);
-teaLoader.load('teapot.obj', function (object){
-    teapot.add(object)
+var mtlloader = new THREE.MTLLoader();
+mtlloader.setTexturePath('./');
+mtlloader.load('Handgun_obj.mtl', function (materials){
+    materials.preload();
+    var teaLoader = new THREE.OBJLoader();
+    teaLoader.setMaterials(materials);
+    teaLoader.load('Handgun_obj.obj', function (object){
+        teapot.add(object)
+    });
+
 });
+
 teapotGeo.add(teapot);
 
 var teaGeoEntity = new Argon.Cesium.Entity({
@@ -178,7 +181,7 @@ app.updateEvent.addEventListener(function (frame) {
     }
     // the first time through, we create a geospatial position for
     // the box somewhere near us 
-    if (!boxInit) {
+    /*if (!boxInit) {
         var defaultFrame = app.context.getDefaultReferenceFrame();
         // set the box's position to 10 meters away from the user.
         // First, clone the userPose postion, and add 10 to the X
@@ -195,7 +198,7 @@ app.updateEvent.addEventListener(function (frame) {
             scene.add(boxGeoObject);
             boxInit = true;
         }
-    }
+    }*/
 
     if (!teaInit) {
         var defaultFrame1 = app.context.getDefaultReferenceFrame();
