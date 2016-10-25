@@ -144,11 +144,12 @@ var teapotGeo = new THREE.Object3D;
 var teapot = new THREE.Object3D();
 var mtlloader = new THREE.MTLLoader();
 mtlloader.setTexturePath('./');
-mtlloader.load('Handgun_obj.mtl', function (materials){
+mtlloader.setPath('./');
+mtlloader.load('KFCBucket.mtl', function (materials){
     materials.preload();
     var teaLoader = new THREE.OBJLoader();
     teaLoader.setMaterials(materials);
-    teaLoader.load('Handgun_obj.obj', function (object){
+    teaLoader.load('KFCBucket.obj', function (object){
         teapot.add(object)
     });
 
@@ -234,7 +235,7 @@ app.updateEvent.addEventListener(function (frame) {
     // rotate the boxes at a constant speed, independent of frame rates     
     // to make it a little less boring
     buzz.rotateY(2 * frame.deltaTime / 10000);
-    box.rotateY(3 * frame.deltaTime / 10000);
+    teapot.rotateY(3 * frame.deltaTime / 10000);
     //
     // stuff to print out the status message.  It's fairly expensive to convert FIXED
     // coordinates back to LLA, but those coordinates probably make the most sense as
