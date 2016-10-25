@@ -143,15 +143,18 @@ function toFixed(value, precision) {
 var teapotGeo = new THREE.Object3D;
 var teapot = new THREE.Object3D();
 var mtlloader = new THREE.MTLLoader();
-//mtlloader.setTexturePath('./');
-//mtlloader.setPath('./');
+mtlloader.setTexturePath('./');
+mtlloader.setPath('./');
 mtlloader.load('KFCBucket.mtl', function (materials){
     materials.preload();
     var teaLoader = new THREE.OBJLoader();
     teaLoader.setMaterials(materials);
     teaLoader.load('KFCBucket.obj', function (object){
-        var ambient = new THREE.AmbientLight( 0x505050 );
-        teapot.add(ambient)
+       var ambient = new THREE.AmbientLight( 0x666666 );
+       teapot.add(ambient);
+	   var directionalLight = new THREE.DirectionalLight( 0xffeedd );
+       directionalLight.position.set( 0, 0, 1 ).normalize();
+	    teapot.add( directionalLight );
         teapot.add(object);
         
     });
